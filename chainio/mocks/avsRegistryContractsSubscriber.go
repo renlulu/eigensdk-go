@@ -12,7 +12,7 @@ package mocks
 import (
 	reflect "reflect"
 
-	contractBLSApkRegistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/BLSApkRegistry"
+	contractBLSApkRegistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IBLSApkRegistry"
 	event "github.com/ethereum/go-ethereum/event"
 	gomock "go.uber.org/mock/gomock"
 )
@@ -41,10 +41,10 @@ func (m *MockAvsRegistrySubscriber) EXPECT() *MockAvsRegistrySubscriberMockRecor
 }
 
 // SubscribeToNewPubkeyRegistrations mocks base method.
-func (m *MockAvsRegistrySubscriber) SubscribeToNewPubkeyRegistrations() (chan *contractBLSApkRegistry.ContractBLSApkRegistryNewPubkeyRegistration, event.Subscription, error) {
+func (m *MockAvsRegistrySubscriber) SubscribeToNewPubkeyRegistrations() (chan *contractBLSApkRegistry.ContractIBLSApkRegistryNewPubkeyRegistration, event.Subscription, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SubscribeToNewPubkeyRegistrations")
-	ret0, _ := ret[0].(chan *contractBLSApkRegistry.ContractBLSApkRegistryNewPubkeyRegistration)
+	ret0, _ := ret[0].(chan *contractBLSApkRegistry.ContractIBLSApkRegistryNewPubkeyRegistration)
 	ret1, _ := ret[1].(event.Subscription)
 	ret2, _ := ret[2].(error)
 	return ret0, ret1, ret2

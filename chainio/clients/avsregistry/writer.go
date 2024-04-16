@@ -18,7 +18,7 @@ import (
 	gethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	blsapkregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/BLSApkRegistry"
+	blsapkregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IBLSApkRegistry"
 	opstateretriever "github.com/Layr-Labs/eigensdk-go/contracts/bindings/OperatorStateRetriever"
 	regcoord "github.com/Layr-Labs/eigensdk-go/contracts/bindings/RegistryCoordinator"
 	smbase "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ServiceManagerBase"
@@ -75,7 +75,7 @@ type AvsRegistryChainWriter struct {
 	registryCoordinator    *regcoord.ContractRegistryCoordinator
 	operatorStateRetriever *opstateretriever.ContractOperatorStateRetriever
 	stakeRegistry          *stakeregistry.ContractStakeRegistry
-	blsApkRegistry         *blsapkregistry.ContractBLSApkRegistry
+	blsApkRegistry         *blsapkregistry.ContractIBLSApkRegistry
 	elReader               elcontracts.ELReader
 	logger                 logging.Logger
 	ethClient              eth.Client
@@ -89,7 +89,7 @@ func NewAvsRegistryChainWriter(
 	registryCoordinator *regcoord.ContractRegistryCoordinator,
 	operatorStateRetriever *opstateretriever.ContractOperatorStateRetriever,
 	stakeRegistry *stakeregistry.ContractStakeRegistry,
-	blsApkRegistry *blsapkregistry.ContractBLSApkRegistry,
+	blsApkRegistry *blsapkregistry.ContractIBLSApkRegistry,
 	elReader elcontracts.ELReader,
 	logger logging.Logger,
 	ethClient eth.Client,
@@ -138,7 +138,7 @@ func BuildAvsRegistryChainWriter(
 	if err != nil {
 		return nil, types.WrapError(errors.New("Failed to get BLSApkRegistry address"), err)
 	}
-	blsApkRegistry, err := blsapkregistry.NewContractBLSApkRegistry(blsApkRegistryAddr, ethClient)
+	blsApkRegistry, err := blsapkregistry.NewContractIBLSApkRegistry(blsApkRegistryAddr, ethClient)
 	if err != nil {
 		return nil, types.WrapError(errors.New("Failed to create BLSApkRegistry contract"), err)
 	}

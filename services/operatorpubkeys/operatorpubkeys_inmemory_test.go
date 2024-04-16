@@ -14,7 +14,7 @@ import (
 	gethtypes "github.com/ethereum/go-ethereum/core/types"
 	"go.uber.org/mock/gomock"
 
-	apkregistrybindings "github.com/Layr-Labs/eigensdk-go/contracts/bindings/BLSApkRegistry"
+	apkregistrybindings "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IBLSApkRegistry"
 )
 
 type testOperator struct {
@@ -79,8 +79,8 @@ func TestGetOperatorPubkeys(t *testing.T) {
 			name: "should return operator pubkeys found via subscription",
 			mocksInitializationFunc: func(mockAvsRegistrySubscriber *mocks.MockAvsRegistrySubscriber, mockElReader *mocks.MockAvsRegistryReader, mockSubscription *mocks.MockSubscription) {
 				errC := make(chan error)
-				pubkeyRegistrationEventC := make(chan *apkregistrybindings.ContractBLSApkRegistryNewPubkeyRegistration, 1)
-				pubkeyRegistrationEvent := &apkregistrybindings.ContractBLSApkRegistryNewPubkeyRegistration{
+				pubkeyRegistrationEventC := make(chan *apkregistrybindings.ContractIBLSApkRegistryNewPubkeyRegistration, 1)
+				pubkeyRegistrationEvent := &apkregistrybindings.ContractIBLSApkRegistryNewPubkeyRegistration{
 					Operator: testOperator1.operatorAddr,
 					PubkeyG1: testOperator1.contractG1Pubkey,
 					PubkeyG2: testOperator1.contractG2Pubkey,

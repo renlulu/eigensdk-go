@@ -12,8 +12,8 @@ import (
 
 	"github.com/Layr-Labs/eigensdk-go/chainio/clients/eth"
 	avsdirectory "github.com/Layr-Labs/eigensdk-go/contracts/bindings/AVSDirectory"
-	blsapkregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/BLSApkRegistry"
 	delegationmanager "github.com/Layr-Labs/eigensdk-go/contracts/bindings/DelegationManager"
+	blsapkregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IBLSApkRegistry"
 	slasher "github.com/Layr-Labs/eigensdk-go/contracts/bindings/ISlasher"
 	indexregistry "github.com/Layr-Labs/eigensdk-go/contracts/bindings/IndexRegistry"
 	opstateretriever "github.com/Layr-Labs/eigensdk-go/contracts/bindings/OperatorStateRetriever"
@@ -96,7 +96,7 @@ type AvsRegistryContractBindings struct {
 	ServiceManager         *servicemanager.ContractServiceManagerBase
 	RegistryCoordinator    *regcoordinator.ContractRegistryCoordinator
 	StakeRegistry          *stakeregistry.ContractStakeRegistry
-	BlsApkRegistry         *blsapkregistry.ContractBLSApkRegistry
+	BlsApkRegistry         *blsapkregistry.ContractIBLSApkRegistry
 	IndexRegistry          *indexregistry.ContractIndexRegistry
 	OperatorStateRetriever *opstateretriever.ContractOperatorStateRetriever
 }
@@ -143,7 +143,7 @@ func NewAVSRegistryContractBindings(
 	if err != nil {
 		return nil, types.WrapError(errors.New("Failed to fetch BLSPubkeyRegistry address"), err)
 	}
-	contractBlsApkRegistry, err := blsapkregistry.NewContractBLSApkRegistry(
+	contractBlsApkRegistry, err := blsapkregistry.NewContractIBLSApkRegistry(
 		blsApkRegistryAddr,
 		ethclient,
 	)
